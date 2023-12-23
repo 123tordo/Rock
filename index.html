@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Random Music Quiz</title>
+    <style>
+        body {
+            margin: 0;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            background-color: black; /* Black background color */
+            color: #ecf0f1; /* Light grey text color */
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-size: 28px;
+            text-align: center;
+            transition: background-color 0.5s ease;
+        }
+
+        #question-container {
+            padding: 20px;
+            border: 2px solid #e74c3c; /* Red border color */
+            border-radius: 10px; /* Rounded corners */
+            background-color: #2c3e50; /* Dark grey background color */
+            transition: background-color 0.5s ease;
+        }
+
+        h1 {
+            font-size: 36px;
+            color: #e74c3c; /* Red color for headers */
+            margin-bottom: 20px;
+        }
+
+        #countdown {
+            margin-top: 10px;
+        }
+
+        .answer {
+            color: yellow; /* Yellow color for answers */
+        }
+    </style>
+</head>
+<body>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const questionContainer = document.createElement("div");
+        const countdownElement = document.createElement("div");
+
+        document.body.appendChild(questionContainer);
+
+        const allMusicQuestions = [
+            {
+                question: "Which artist is known as the 'Queen of R&B'?",
+                answer: "Beyoncé"
+            },
+            {
+                question: "What is the best-selling album of all time?",
+                answer: "Michael Jackson - Thriller"
+            },
+            {
+                question: "Who is the lead singer of the band U2?",
+                answer: "Bono"
+            },
+            {
+                question: "In which year did Taylor Swift release her debut album?",
+                answer: "2006"
+            },
+            {
+                question: "Which rock band is famous for the song 'Bohemian Rhapsody'?",
+                answer: "Queen"
+            },
+            {
+                question: "What is the name of Adele's breakthrough album?",
+                answer: "21"
+            },
+            {
+                question: "Who won the Nobel Prize in Literature in 2016 and is also a musician?",
+                answer: "Bob Dylan"
+            },
+            {
+                question: "Which pop star is known as the 'Material Girl'?",
+                answer: "Madonna"
+            },
+            {
+                question: "What is the title of Ed Sheeran's debut studio album?",
+                answer: "+"
+            },
+            {
+                question: "Which country is the birthplace of the band ABBA?",
+                answer: "Sweden"
+            },
+            {
+                question: "What is the real name of the rapper Drake?",
+                answer: "Aubrey Graham"
+            },
+            {
+                question: "In which year did Nirvana release their iconic album 'Nevermind'?",
+                answer: "1991"
+            },
+            {
+                question: "Who is known as the 'Rocket Man'?",
+                answer: "Elton John"
+            },
+            {
+                question: "Which female artist has the most Grammy Awards?",
+                answer: "Beyoncé"
+            },
+            {
+                question: "What is the title of the first studio album by The Beatles?",
+                answer: "Please Please Me"
+            },
+            {
+                question: "Who is the guitarist for the band Led Zeppelin?",
+                answer: "Jimmy Page"
+            },
+            {
+                question: "What is the title of Michael Jackson's album with the song 'Billie Jean'?",
+                answer: "Thriller"
+            },
+            {
+                question: "In which decade did the band Queen form?",
+                answer: "1970s"
+            },
+            {
+                question: "Who sang the song 'Wannabe' as part of the Spice Girls?",
+                answer: "Geri Halliwell (Ginger Spice)"
+            },
+            {
+                question: "What is the real name of the rapper Eminem?",
+                answer: "Marshall Mathers"
+            },
+            {
+                question: "Who wrote and originally performed the song 'Hallelujah'?",
+                answer: "Leonard Cohen"
+            },
+            {
+                question: "Which artist is known for the hit 'Watermelon Sugar'?",
+                answer: "Harry Styles"
+            },
+            {
+                question: "What is the title of Lady Gaga's debut album?",
+                answer: "The Fame"
+            },
+            {
+                question: "Who was the lead vocalist of the band Queen?",
+                answer: "Freddie Mercury"
+            },
+            {
+                question: "In which year did Elvis Presley pass away?",
+                answer: "1977"
+            },
+            {
+                question: "What is the real name of the rapper Jay-Z?",
+                answer: "Shawn Carter"
+            },
+            {
+                question: "Who is known as the 'King of Pop'?",
+                answer: "Michael Jackson"
+            },
+            {
+                question: "What is the title of the iconic Beatles album featuring a zebra crossing on the cover?",
+                answer: "Abbey Road"
+            },
+            {
+                question: "Which artist released the album 'Back to Black'?",
+                answer: "Amy Winehouse"
+            },
+        ];
+
+        const allDifficultMusicQuestions = [
+            {
+                question: "Who composed the 'Four Seasons'?",
+                answer: "Antonio Vivaldi"
+            },
+            {
+                question: "Which composer is known for his 'Moonlight Sonata'?",
+                answer: "Ludwig van Beethoven"
+            },
+            {
+                question: "What is the title of the opera composed by Giuseppe Verdi that includes the 'Chorus of the Hebrew Slaves'?",
+                answer: "Nabucco"
+            },
+            {
+                question: "Who is considered the 'Father of the Symphony'?",
+                answer: "Joseph Haydn"
+            },
+            {
+                question: "In which period did the composer Wolfgang Amadeus Mozart live?",
+                answer: "Classical"
+            },
+            {
+                question: "Which Russian composer is known for 'The Nutcracker' and 'Swan Lake'?",
+                answer: "Pyotr Ilyich Tchaikovsky"
+            },
+            {
+                question: "Who wrote the famous choral work 'Messiah'?",
+                answer: "George Frideric Handel"
+            },
+            {
+                question: "What is the name of the technique in which two or more independent melodies are played simultaneously?",
+                answer: "Counterpoint"
+            },
+            {
+                question: "Which composer is associated with the concept of 'Gesamtkunstwerk' or 'total work of art'?",
+                answer: "Richard Wagner"
+            },
+            {
+                question: "What is the traditional Japanese three-stringed musical instrument?",
+                answer: "Shamisen"
+            },
+            {
+                question: "Who is known for his innovative use of the synthesizer and electronic music, particularly in the album 'Switched-On Bach'?",
+                answer: "Wendy Carlos"
+            },
+            {
+                question: "Which American composer is considered a pioneer in minimalism with works like 'Music for 18 Musicians'?",
+                answer: "Steve Reich"
+            },
+            {
+                question: "In music notation, what does 'pp' stand for?",
+                answer: "Pianissimo (very soft)"
+            },
+            {
+                question: "What is the term for a sudden, loud musical effect?",
+                answer: "Sforzando"
+            },
+            {
+                question: "Which instrument does Yo-Yo Ma play?",
+                answer: "Cello"
+            },
+            {
+                question: "Who is known as the 'King of Ragtime' for his compositions like 'Maple Leaf Rag'?",
+                answer: "Scott Joplin"
+            },
+            {
+                question: "What is the term for the technique of rapidly alternating between two notes?",
+                answer: "Trill"
+            },
+            {
+                question: "Which composer is associated with the 'New World Symphony'?",
+                answer: "Antonín Dvořák"
+            },
+            {
+                question: "What is the title of the experimental and influential album released by Pink Floyd in 1973?",
+                answer: "The Dark Side of the Moon"
+            },
+            {
+                question: "Who composed the 'Rhapsody in Blue,' blending classical music with jazz elements?",
+                answer: "George Gershwin"
+            },
+        ];
+
+        // Combine the questions from both sets
+        const allMusicQuestions = [...allMusicQuestions, ...allDifficultMusicQuestions];
+
+        function displayRandomQuestion() {
+            const randomIndex = Math.floor(Math.random() * allMusicQuestions.length);
+            const currentQuestion = allMusicQuestions[randomIndex];
+
+            questionContainer.innerHTML = `<h1>${currentQuestion.question}</h1>`;
+            questionContainer.appendChild(countdownElement);
+
+            // Show the countdown for 15 seconds
+            let secondsLeft = 15;
+            countdownElement.textContent = `Tempo restante: ${secondsLeft}s`;
+
+            const countdownInterval = setInterval(() => {
+                secondsLeft--;
+
+                if (secondsLeft >= 0) {
+                    countdownElement.textContent = `Tempo restante: ${secondsLeft}s`;
+                } else {
+                    clearInterval(countdownInterval);
+
+                    // Show the answer for 10 seconds
+                    questionContainer.innerHTML += `<h1 class="answer">Resposta: ${currentQuestion.answer}</h1>`;
+                    setTimeout(() => {
+                        // Show "Lance o dado outra vez" for 10 seconds
+                        questionContainer.innerHTML = "<h1>Lance o dado outra vez</h1>";
+                        setTimeout(() => {
+                            // Turn the complete page to black after 10 seconds
+                            document.body.style.backgroundColor = "black";
+                        }, 10000);
+                    }, 10000);
+                }
+            }, 1000);
+        }
+
+        displayRandomQuestion(); // Initial call to start the quiz
+    });
+</script>
+
+</body>
+</html>
+
+
