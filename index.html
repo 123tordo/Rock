@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Rock Quiz</title>
+    <title>Quiz de Rock</title>
     <style>
         body {
             font-family: 'Arial', sans-serif;
@@ -23,7 +23,7 @@
             border-radius: 10px;
             background-color: #444;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
-            display: none; /* Initially hide the question container */
+            display: none; /* Inicialmente esconder o contêiner de perguntas */
         }
 
         h2 {
@@ -39,7 +39,7 @@
         }
 
         #answer {
-            color: yellow; /* Set answer text color to yellow */
+            color: yellow; /* Definir cor do texto da resposta para amarelo */
         }
 
         #countdown {
@@ -51,7 +51,7 @@
 
 <body>
     <div id="question-container">
-        <h2>Rock Quiz Question</h2>
+        <h2>Quiz de Rock</h2>
         <p id="question"></p>
         <p id="countdown"></p>
         <p id="answer" style="display:none;"></p>
@@ -73,7 +73,7 @@
                     question: "Quem é o vocalista da banda Queen?",
                     answer: "Freddie Mercury"
                 },
-                // Add more questions with their answers
+                // Adicione mais perguntas com suas respostas
                 {
                     question: "Qual banda de rock lançou o álbum 'Abbey Road'?",
                     answer: "The Beatles"
@@ -106,7 +106,7 @@
                     question: "Qual é a música do Pearl Jam conhecida por 'Even Flow'?",
                     answer: "Even Flow"
                 },
-                // Additional Difficult Questions
+                // Perguntas Difíceis Adicionais
                 {
                     question: "Qual é o álbum conceitual lançado pela banda The Who em 1969?",
                     answer: "Tommy"
@@ -147,7 +147,7 @@
                     question: "Quem é o vocalista da banda Deep Purple?",
                     answer: "Ian Gillan"
                 },
-                // Additional Difficult Questions
+                // Perguntas Difíceis Adicionais
                 {
                     question: "Qual é a música do Aerosmith que começou com 'I could stay awake just to hear you breathing'?",
                     answer: "I Don't Want to Miss a Thing"
@@ -188,7 +188,7 @@
                     question: "Quem é o guitarrista conhecido por 'Sweet Child o' Mine'?",
                     answer: "Slash"
                 },
-                // Additional Difficult Questions
+                // Perguntas Difíceis Adicionais
                 {
                     question: "Qual é a música do Queen que começa com 'Is this the real life, is this just fantasy'?",
                     answer: "Bohemian Rhapsody"
@@ -230,84 +230,84 @@
                     answer: "Taylor Hawkins"
                 },
                 {
-    question: "Which rock band is known as the 'Greatest Rock and Roll Band in the World'?",
-    answer: "The Rolling Stones"
-  },
-  {
-    question: "Who was the lead guitarist for the band Queen?",
-    answer: "Brian May"
-  },
-  {
-    question: "Which rock album features the song 'Stairway to Heaven'?",
-    answer: "Led Zeppelin IV"
-  },
-  {
-    question: "In what year did Jimi Hendrix pass away?",
-    answer: "1970"
-  },
-  {
-    question: "Who is often referred to as the 'Prince of Darkness' in the rock world?",
-    answer: "Ozzy Osbourne"
-  },
-  // ... add more difficult rock questions
+                    question: "Qual banda de rock é conhecida como a 'Maior Banda de Rock and Roll do Mundo'?",
+                    answer: "The Rolling Stones"
+                },
+                {
+                    question: "Quem foi o guitarrista principal da banda Queen?",
+                    answer: "Brian May"
+                },
+                {
+                    question: "Qual álbum de rock apresenta a música 'Stairway to Heaven'?",
+                    answer: "Led Zeppelin IV"
+                },
+                {
+                    question: "Em que ano Jimi Hendrix faleceu?",
+                    answer: "1970"
+                },
+                {
+                    question: "Quem é frequentemente referido como o 'Príncipe das Trevas' no mundo do rock?",
+                    answer: "Ozzy Osbourne"
+                },
+                // ... adicione mais perguntas difíceis de rock
 
-  // Pop Questions
-  {
-    question: "Which pop artist is known as the 'Material Girl'?",
-    answer: "Madonna"
-  },
-  {
-    question: "Who is the best-selling female recording artist of all time?",
-    answer: "Whitney Houston"
-  },
-  {
-    question: "Which pop group performed the hit song 'I Want It That Way'?",
-    answer: "Backstreet Boys"
-  },
-  {
-    question: "In what year did Michael Jackson release the album 'Thriller'?",
-    answer: "1982"
-  },
-  {
-    question: "Who won the first season of American Idol?",
-    answer: "Kelly Clarkson"
-  },
-  // ... add more difficult pop questions
+                // Perguntas de Pop
+                {
+                    question: "Qual artista pop é conhecida como 'Material Girl'?",
+                    answer: "Madonna"
+                },
+                {
+                    question: "Quem é a artista feminina mais vendida de todos os tempos?",
+                    answer: "Whitney Houston"
+                },
+                {
+                    question: "Qual grupo pop apresentou a música de sucesso 'I Want It That Way'?",
+                    answer: "Backstreet Boys"
+                },
+                {
+                    question: "Em que ano Michael Jackson lançou o álbum 'Thriller'?",
+                    answer: "1982"
+                },
+                {
+                    question: "Quem venceu a primeira temporada do American Idol?",
+                    answer: "Kelly Clarkson"
+                },
+                // ... adicione mais perguntas difíceis de pop
 
-  // Indie Questions
-  {
-    question: "Which indie band released the album 'Is This It' in 2001?",
-    answer: "The Strokes"
-  },
-  {
-    question: "Who is the lead singer of the Arctic Monkeys?",
-    answer: "Alex Turner"
-  },
-  {
-    question: "Which indie band originated in Manchester and released the album 'Unknown Pleasures'?",
-    answer: "Joy Division"
-  },
-  {
-    question: "What is the title of Radiohead's third studio album?",
-    answer: "OK Computer"
-  },
-  {
-    question: "Which indie duo consists of Ben Gibbard and Jimmy Tamborello?",
-    answer: "The Postal Service"
-  },
+                // Perguntas de Indie
+                {
+                    question: "Qual banda indie lançou o álbum 'Is This It' em 2001?",
+                    answer: "The Strokes"
+                },
+                {
+                    question: "Quem é o vocalista dos Arctic Monkeys?",
+                    answer: "Alex Turner"
+                },
+                {
+                    question: "Qual banda indie originou-se em Manchester e lançou o álbum 'Unknown Pleasures'?",
+                    answer: "Joy Division"
+                },
+                {
+                    question: "Qual é o título do terceiro álbum de estúdio do Radiohead?",
+                    answer: "OK Computer"
+                },
+                {
+                    question: "Qual duo indie é composto por Ben Gibbard e Jimmy Tamborello?",
+                    answer: "The Postal Service"
+                },
             ];
 
             function displayRandomQuestion() {
                 const randomIndex = Math.floor(Math.random() * rockQuiz.length);
                 const currentQuestion = rockQuiz[randomIndex];
 
-                // Display the question
+                // Exibir a pergunta
                 questionElement.textContent = currentQuestion.question;
 
-                // Show the question container
+                // Mostrar o contêiner de perguntas
                 questionContainer.style.display = "block";
 
-                // Set a timeout to hide the question after 10 seconds
+                // Definir um timeout para ocultar a pergunta após 10 segundos
                 let secondsLeft = 10;
                 countdownElement.textContent = `Tempo restante: ${secondsLeft}s`;
                 const countdownInterval = setInterval(() => {
@@ -317,21 +317,21 @@
                         countdownElement.textContent = `Tempo restante: ${secondsLeft}s`;
                     } else {
                         clearInterval(countdownInterval);
-                        countdownElement.textContent = ""; // Hide countdown after it reaches 0
+                        countdownElement.textContent = ""; // Ocultar a contagem regressiva após atingir 0
 
-                        // Display the answer
+                        // Exibir a resposta
                         answerElement.textContent = `Resposta: ${currentQuestion.answer}`;
                         answerElement.style.display = "block";
 
-                        // Set a timeout to replace the page content after 6 seconds
+                        // Definir um timeout para substituir o conteúdo da página após 6 segundos
                         setTimeout(() => {
-                            document.body.innerHTML = "<h1>Lança o dado outra vez e lê o QR</h1>";
-                        }, 10000); // 10 seconds for displaying the answer
+                            document.body.innerHTML = "<h1>Lança o dado outra vez e lê o código para um novo desafio</h1>";
+                        }, 10000); // 10 segundos para exibir a resposta
                     }
-                }, 1000); // Update countdown every second
+                }, 1000); // Atualizar a contagem regressiva a cada segundo
             }
 
-            // Initial call to start the quiz
+            // Chamada inicial para iniciar o quiz
             displayRandomQuestion();
         });
     </script>
