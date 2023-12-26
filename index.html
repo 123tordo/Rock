@@ -1,300 +1,340 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Random Music Quiz</title>
+    <title>Rock Quiz</title>
     <style>
         body {
-            margin: 0;
-            overflow: hidden;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            height: 100vh;
-            background-color: black; /* Black background color */
-            color: #ecf0f1; /* Light grey text color */
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            font-size: 28px;
+            font-family: 'Arial', sans-serif;
             text-align: center;
-            transition: background-color 0.5s ease;
+            padding: 20px;
+            background-color: #333;
+            color: #fff;
+            transition: background-color 1s ease;
         }
 
         #question-container {
+            max-width: 600px;
+            margin: auto;
+            border: 2px solid #ff4500;
             padding: 20px;
-            border: 2px solid #e74c3c; /* Red border color */
-            border-radius: 10px; /* Rounded corners */
-            background-color: #2c3e50; /* Dark grey background color */
-            transition: background-color 0.5s ease;
+            border-radius: 10px;
+            background-color: #444;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+            display: none; /* Initially hide the question container */
         }
 
-        h1 {
-            font-size: 36px;
-            color: #e74c3c; /* Red color for headers */
-            margin-bottom: 20px;
+        h2 {
+            font-size: 20px;
+            margin-bottom: 10px;
+            color: #ff4500;
+        }
+
+        p {
+            font-size: 16px;
+            margin-bottom: 10px;
+            color: #fff;
+        }
+
+        #answer {
+            color: yellow; /* Set answer text color to yellow */
         }
 
         #countdown {
-            margin-top: 10px;
-        }
-
-        .answer {
-            color: yellow; /* Yellow color for answers */
+            font-size: 18px;
+            color: #ff4500;
         }
     </style>
 </head>
+
 <body>
+    <div id="question-container">
+        <h2>Rock Quiz Question</h2>
+        <p id="question"></p>
+        <p id="countdown"></p>
+        <p id="answer" style="display:none;"></p>
+    </div>
 
-<script>
-    document.addEventListener("DOMContentLoaded", function () {
-        const questionContainer = document.createElement("div");
-        const countdownElement = document.createElement("div");
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const questionContainer = document.getElementById("question-container");
+            const questionElement = document.getElementById("question");
+            const answerElement = document.getElementById("answer");
+            const countdownElement = document.getElementById("countdown");
 
-        document.body.appendChild(questionContainer);
+            const rockQuiz = [
+                {
+                    question: "Qual banda de rock lançou o álbum 'The Dark Side of the Moon'?",
+                    answer: "Pink Floyd"
+                },
+                {
+                    question: "Quem é o vocalista da banda Queen?",
+                    answer: "Freddie Mercury"
+                },
+                // Add more questions with their answers
+                {
+                    question: "Qual banda de rock lançou o álbum 'Abbey Road'?",
+                    answer: "The Beatles"
+                },
+                {
+                    question: "Quem é o guitarrista conhecido como 'Deus da Guitarra'?",
+                    answer: "Jimi Hendrix"
+                },
+                {
+                    question: "Qual é a música do Red Hot Chili Peppers que começou com 'Sometimes I feel like I don't have a partner'?",
+                    answer: "Under the Bridge"
+                },
+                {
+                    question: "Qual é a banda de rock alternativo liderada por Thom Yorke?",
+                    answer: "Radiohead"
+                },
+                {
+                    question: "Quem é o lendário vocalista da banda The Doors?",
+                    answer: "Jim Morrison"
+                },
+                {
+                    question: "Qual é a música do Queen que apresenta uma colaboração com David Bowie?",
+                    answer: "Under Pressure"
+                },
+                {
+                    question: "Quem é o baixista do Metallica?",
+                    answer: "Robert Trujillo"
+                },
+                {
+                    question: "Qual é a música do Pearl Jam conhecida por 'Even Flow'?",
+                    answer: "Even Flow"
+                },
+                // Additional Difficult Questions
+                {
+                    question: "Qual é o álbum conceitual lançado pela banda The Who em 1969?",
+                    answer: "Tommy"
+                },
+                {
+                    question: "Quem é o lendário guitarrista conhecido por seu trabalho com a banda Van Halen?",
+                    answer: "Eddie Van Halen"
+                },
+                {
+                    question: "Qual é a música do Pink Floyd que começa com 'Hello, is there anybody in there?'?",
+                    answer: "Comfortably Numb"
+                },
+                {
+                    question: "Quem é o vocalista da banda Led Zeppelin?",
+                    answer: "Robert Plant"
+                },
+                {
+                    question: "Qual é o álbum do Nirvana que inclui 'Come as You Are' e 'Smells Like Teen Spirit'?",
+                    answer: "Nevermind"
+                },
+                {
+                    question: "Quem é o baixista da banda Rush?",
+                    answer: "Geddy Lee"
+                },
+                {
+                    question: "Qual é a música do AC/DC que começa com 'I'm a rolling thunder, a pouring rain'?",
+                    answer: "Thunderstruck"
+                },
+                {
+                    question: "Quem é o guitarrista principal da banda Guns N' Roses?",
+                    answer: "Slash"
+                },
+                {
+                    question: "Qual é o álbum clássico lançado pela banda Black Sabbath em 1970?",
+                    answer: "Paranoid"
+                },
+                {
+                    question: "Quem é o vocalista da banda Deep Purple?",
+                    answer: "Ian Gillan"
+                },
+                // Additional Difficult Questions
+                {
+                    question: "Qual é a música do Aerosmith que começou com 'I could stay awake just to hear you breathing'?",
+                    answer: "I Don't Want to Miss a Thing"
+                },
+                {
+                    question: "Quem é o vocalista da banda U2?",
+                    answer: "Bono"
+                },
+                {
+                    question: "Qual é a música do Bon Jovi que começou com 'Shot through the heart, and you're to blame'?",
+                    answer: "You Give Love a Bad Name"
+                },
+                {
+                    question: "Quem é o guitarrista conhecido por 'Purple Haze' e 'Voodoo Child'?",
+                    answer: "Jimi Hendrix"
+                },
+                {
+                    question: "Qual é a banda conhecida por 'Stairway to Heaven'?",
+                    answer: "Led Zeppelin"
+                },
+                {
+                    question: "Quem é o vocalista da banda The Rolling Stones?",
+                    answer: "Mick Jagger"
+                },
+                {
+                    question: "Qual é o álbum do AC/DC que inclui 'Back in Black'?",
+                    answer: "Back in Black"
+                },
+                {
+                    question: "Quem é o vocalista da banda Guns N' Roses?",
+                    answer: "Axl Rose"
+                },
+                {
+                    question: "Qual é a música do Pearl Jam conhecida por 'Alive'?",
+                    answer: "Alive"
+                },
+                {
+                    question: "Quem é o guitarrista conhecido por 'Sweet Child o' Mine'?",
+                    answer: "Slash"
+                },
+                // Additional Difficult Questions
+                {
+                    question: "Qual é a música do Queen que começa com 'Is this the real life, is this just fantasy'?",
+                    answer: "Bohemian Rhapsody"
+                },
+                {
+                    question: "Quem é o vocalista da banda Nirvana?",
+                    answer: "Kurt Cobain"
+                },
+                {
+                    question: "Qual é a música do Led Zeppelin que começa com 'Hey hey mama, said the way you move'?",
+                    answer: "Black Dog"
+                },
+                {
+                    question: "Quem é o guitarrista principal da banda Pink Floyd?",
+                    answer: "David Gilmour"
+                },
+                {
+                    question: "Qual é a música do Deep Purple que começa com 'Smoke on the water, fire in the sky'?",
+                    answer: "Smoke on the Water"
+                },
+                {
+                    question: "Quem é o vocalista da banda AC/DC?",
+                    answer: "Brian Johnson"
+                },
+                {
+                    question: "Qual é a música do The Rolling Stones que começa com 'I can't get no satisfaction'?",
+                    answer: "(I Can't Get No) Satisfaction"
+                },
+                {
+                    question: "Quem é o baixista da banda Nirvana?",
+                    answer: "Krist Novoselic"
+                },
+                {
+                    question: "Qual é a música do Jimi Hendrix Experience que começa com 'Purple Haze all in my brain'?",
+                    answer: "Purple Haze"
+                },
+                {
+                    question: "Quem é o baterista da banda Foo Fighters?",
+                    answer: "Taylor Hawkins"
+                },
+                {
+    question: "Which rock band is known as the 'Greatest Rock and Roll Band in the World'?",
+    answer: "The Rolling Stones"
+  },
+  {
+    question: "Who was the lead guitarist for the band Queen?",
+    answer: "Brian May"
+  },
+  {
+    question: "Which rock album features the song 'Stairway to Heaven'?",
+    answer: "Led Zeppelin IV"
+  },
+  {
+    question: "In what year did Jimi Hendrix pass away?",
+    answer: "1970"
+  },
+  {
+    question: "Who is often referred to as the 'Prince of Darkness' in the rock world?",
+    answer: "Ozzy Osbourne"
+  },
+  // ... add more difficult rock questions
 
-        const allMusicQuestions = [
-            {
-                question: "Which artist is known as the 'Queen of R&B'?",
-                answer: "Beyoncé"
-            },
-            {
-                question: "What is the best-selling album of all time?",
-                answer: "Michael Jackson - Thriller"
-            },
-            {
-                question: "Who is the lead singer of the band U2?",
-                answer: "Bono"
-            },
-            {
-                question: "In which year did Taylor Swift release her debut album?",
-                answer: "2006"
-            },
-            {
-                question: "Which rock band is famous for the song 'Bohemian Rhapsody'?",
-                answer: "Queen"
-            },
-            {
-                question: "What is the name of Adele's breakthrough album?",
-                answer: "21"
-            },
-            {
-                question: "Who won the Nobel Prize in Literature in 2016 and is also a musician?",
-                answer: "Bob Dylan"
-            },
-            {
-                question: "Which pop star is known as the 'Material Girl'?",
-                answer: "Madonna"
-            },
-            {
-                question: "What is the title of Ed Sheeran's debut studio album?",
-                answer: "+"
-            },
-            {
-                question: "Which country is the birthplace of the band ABBA?",
-                answer: "Sweden"
-            },
-            {
-                question: "What is the real name of the rapper Drake?",
-                answer: "Aubrey Graham"
-            },
-            {
-                question: "In which year did Nirvana release their iconic album 'Nevermind'?",
-                answer: "1991"
-            },
-            {
-                question: "Who is known as the 'Rocket Man'?",
-                answer: "Elton John"
-            },
-            {
-                question: "Which female artist has the most Grammy Awards?",
-                answer: "Beyoncé"
-            },
-            {
-                question: "What is the title of the first studio album by The Beatles?",
-                answer: "Please Please Me"
-            },
-            {
-                question: "Who is the guitarist for the band Led Zeppelin?",
-                answer: "Jimmy Page"
-            },
-            {
-                question: "What is the title of Michael Jackson's album with the song 'Billie Jean'?",
-                answer: "Thriller"
-            },
-            {
-                question: "In which decade did the band Queen form?",
-                answer: "1970s"
-            },
-            {
-                question: "Who sang the song 'Wannabe' as part of the Spice Girls?",
-                answer: "Geri Halliwell (Ginger Spice)"
-            },
-            {
-                question: "What is the real name of the rapper Eminem?",
-                answer: "Marshall Mathers"
-            },
-            {
-                question: "Who wrote and originally performed the song 'Hallelujah'?",
-                answer: "Leonard Cohen"
-            },
-            {
-                question: "Which artist is known for the hit 'Watermelon Sugar'?",
-                answer: "Harry Styles"
-            },
-            {
-                question: "What is the title of Lady Gaga's debut album?",
-                answer: "The Fame"
-            },
-            {
-                question: "Who was the lead vocalist of the band Queen?",
-                answer: "Freddie Mercury"
-            },
-            {
-                question: "In which year did Elvis Presley pass away?",
-                answer: "1977"
-            },
-            {
-                question: "What is the real name of the rapper Jay-Z?",
-                answer: "Shawn Carter"
-            },
-            {
-                question: "Who is known as the 'King of Pop'?",
-                answer: "Michael Jackson"
-            },
-            {
-                question: "What is the title of the iconic Beatles album featuring a zebra crossing on the cover?",
-                answer: "Abbey Road"
-            },
-            {
-                question: "Which artist released the album 'Back to Black'?",
-                answer: "Amy Winehouse"
-            },
-        ];
+  // Pop Questions
+  {
+    question: "Which pop artist is known as the 'Material Girl'?",
+    answer: "Madonna"
+  },
+  {
+    question: "Who is the best-selling female recording artist of all time?",
+    answer: "Whitney Houston"
+  },
+  {
+    question: "Which pop group performed the hit song 'I Want It That Way'?",
+    answer: "Backstreet Boys"
+  },
+  {
+    question: "In what year did Michael Jackson release the album 'Thriller'?",
+    answer: "1982"
+  },
+  {
+    question: "Who won the first season of American Idol?",
+    answer: "Kelly Clarkson"
+  },
+  // ... add more difficult pop questions
 
-        const allDifficultMusicQuestions = [
-            {
-                question: "Who composed the 'Four Seasons'?",
-                answer: "Antonio Vivaldi"
-            },
-            {
-                question: "Which composer is known for his 'Moonlight Sonata'?",
-                answer: "Ludwig van Beethoven"
-            },
-            {
-                question: "What is the title of the opera composed by Giuseppe Verdi that includes the 'Chorus of the Hebrew Slaves'?",
-                answer: "Nabucco"
-            },
-            {
-                question: "Who is considered the 'Father of the Symphony'?",
-                answer: "Joseph Haydn"
-            },
-            {
-                question: "In which period did the composer Wolfgang Amadeus Mozart live?",
-                answer: "Classical"
-            },
-            {
-                question: "Which Russian composer is known for 'The Nutcracker' and 'Swan Lake'?",
-                answer: "Pyotr Ilyich Tchaikovsky"
-            },
-            {
-                question: "Who wrote the famous choral work 'Messiah'?",
-                answer: "George Frideric Handel"
-            },
-            {
-                question: "What is the name of the technique in which two or more independent melodies are played simultaneously?",
-                answer: "Counterpoint"
-            },
-            {
-                question: "Which composer is associated with the concept of 'Gesamtkunstwerk' or 'total work of art'?",
-                answer: "Richard Wagner"
-            },
-            {
-                question: "What is the traditional Japanese three-stringed musical instrument?",
-                answer: "Shamisen"
-            },
-            {
-                question: "Who is known for his innovative use of the synthesizer and electronic music, particularly in the album 'Switched-On Bach'?",
-                answer: "Wendy Carlos"
-            },
-            {
-                question: "Which American composer is considered a pioneer in minimalism with works like 'Music for 18 Musicians'?",
-                answer: "Steve Reich"
-            },
-            {
-                question: "In music notation, what does 'pp' stand for?",
-                answer: "Pianissimo (very soft)"
-            },
-            {
-                question: "What is the term for a sudden, loud musical effect?",
-                answer: "Sforzando"
-            },
-            {
-                question: "Which instrument does Yo-Yo Ma play?",
-                answer: "Cello"
-            },
-            {
-                question: "Who is known as the 'King of Ragtime' for his compositions like 'Maple Leaf Rag'?",
-                answer: "Scott Joplin"
-            },
-            {
-                question: "What is the term for the technique of rapidly alternating between two notes?",
-                answer: "Trill"
-            },
-            {
-                question: "Which composer is associated with the 'New World Symphony'?",
-                answer: "Antonín Dvořák"
-            },
-            {
-                question: "What is the title of the experimental and influential album released by Pink Floyd in 1973?",
-                answer: "The Dark Side of the Moon"
-            },
-            {
-                question: "Who composed the 'Rhapsody in Blue,' blending classical music with jazz elements?",
-                answer: "George Gershwin"
-            },
-        ];
+  // Indie Questions
+  {
+    question: "Which indie band released the album 'Is This It' in 2001?",
+    answer: "The Strokes"
+  },
+  {
+    question: "Who is the lead singer of the Arctic Monkeys?",
+    answer: "Alex Turner"
+  },
+  {
+    question: "Which indie band originated in Manchester and released the album 'Unknown Pleasures'?",
+    answer: "Joy Division"
+  },
+  {
+    question: "What is the title of Radiohead's third studio album?",
+    answer: "OK Computer"
+  },
+  {
+    question: "Which indie duo consists of Ben Gibbard and Jimmy Tamborello?",
+    answer: "The Postal Service"
+  },
+            ];
 
-        // Combine the questions from both sets
-        const allMusicQuestions = [...allMusicQuestions, ...allDifficultMusicQuestions];
+            function displayRandomQuestion() {
+                const randomIndex = Math.floor(Math.random() * rockQuiz.length);
+                const currentQuestion = rockQuiz[randomIndex];
 
-        function displayRandomQuestion() {
-            const randomIndex = Math.floor(Math.random() * allMusicQuestions.length);
-            const currentQuestion = allMusicQuestions[randomIndex];
+                // Display the question
+                questionElement.textContent = currentQuestion.question;
 
-            questionContainer.innerHTML = `<h1>${currentQuestion.question}</h1>`;
-            questionContainer.appendChild(countdownElement);
+                // Show the question container
+                questionContainer.style.display = "block";
 
-            // Show the countdown for 15 seconds
-            let secondsLeft = 15;
-            countdownElement.textContent = `Tempo restante: ${secondsLeft}s`;
+                // Set a timeout to hide the question after 10 seconds
+                let secondsLeft = 10;
+                countdownElement.textContent = `Tempo restante: ${secondsLeft}s`;
+                const countdownInterval = setInterval(() => {
+                    secondsLeft--;
 
-            const countdownInterval = setInterval(() => {
-                secondsLeft--;
+                    if (secondsLeft >= 0) {
+                        countdownElement.textContent = `Tempo restante: ${secondsLeft}s`;
+                    } else {
+                        clearInterval(countdownInterval);
+                        countdownElement.textContent = ""; // Hide countdown after it reaches 0
 
-                if (secondsLeft >= 0) {
-                    countdownElement.textContent = `Tempo restante: ${secondsLeft}s`;
-                } else {
-                    clearInterval(countdownInterval);
+                        // Display the answer
+                        answerElement.textContent = `Resposta: ${currentQuestion.answer}`;
+                        answerElement.style.display = "block";
 
-                    // Show the answer for 10 seconds
-                    questionContainer.innerHTML += `<h1 class="answer">Resposta: ${currentQuestion.answer}</h1>`;
-                    setTimeout(() => {
-                        // Show "Lance o dado outra vez" for 10 seconds
-                        questionContainer.innerHTML = "<h1>Lance o dado outra vez</h1>";
+                        // Set a timeout to replace the page content after 10 seconds
                         setTimeout(() => {
-                            // Turn the complete page to black after 10 seconds
-                            document.body.style.backgroundColor = "black";
-                        }, 10000);
-                    }, 10000);
-                }
-            }, 1000);
-        }
+                            document.body.innerHTML = "<h1>Lance o dado outra vez</h1>";
+                        }, 10000); // 10 seconds for displaying the answer
+                    }
+                }, 1000); // Update countdown every second
+            }
 
-        displayRandomQuestion(); // Initial call to start the quiz
-    });
-</script>
-
+            // Initial call to start the quiz
+            displayRandomQuestion();
+        });
+    </script>
 </body>
+
 </html>
-
-
