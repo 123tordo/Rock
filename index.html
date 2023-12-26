@@ -323,9 +323,9 @@
                         answerElement.textContent = `Resposta: ${currentQuestion.answer}`;
                         answerElement.style.display = "block";
 
-                        // Set a timeout to replace the page content after 10 seconds
+                        // Set a timeout to replace the page content after 6 seconds
                         setTimeout(() => {
-                            document.body.innerHTML = "<h1>Lance o dado outra vez</h1>";
+                            document.body.innerHTML = "<h1>Lança o dado outra vez e lê o QR</h1>";
                         }, 10000); // 10 seconds for displaying the answer
                     }
                 }, 1000); // Update countdown every second
